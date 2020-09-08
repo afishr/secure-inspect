@@ -21,7 +21,7 @@ class Window(Frame):
 	def saveFile(self):
 		file = filedialog.asksaveasfile(mode="w")
 		f = open(file.name, "w")
-		f.write(self.output.get("1.0",END))
+		f.write(self.output.get("1.0", END))
 		f.close()
 
 	def openProcessAndOutputFile(self):
@@ -34,13 +34,20 @@ class Window(Frame):
 
 		structure = compute_audit_structure(f.read())
 
-		form = '{}{}'
+		form = '{}'
 
 		self.output.config(state=NORMAL)
 
-		for (_, depth, text) in structure:
-				self.output.insert(END, form.format('  '*depth, text))
+		customItemFlag = False
+		for (_, _, text) in structure:
+			if (text == "<custom_item>"):
+				customItemFlag = True
+				continue
+			
+			if (customItemFlag == True):
+				self.output.insert(END, form.format(text))
 				self.output.insert(END, '\n')
+				customItemFlag = False
 
 		self.output.config(state=DISABLED)
 			

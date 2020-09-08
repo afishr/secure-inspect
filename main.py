@@ -18,10 +18,20 @@ class Window(Frame):
 		self.output = Text()
 		self.output.pack(fill=BOTH, expand=1)
 
+		self.initialContent = ''
+
 	def saveFile(self):
-		file = filedialog.asksaveasfile(mode="w")
+
+		if not self.initialContent:
+			return
+		
+		file = filedialog.asksaveasfile(mode="w", filetypes = (("Audit files", "*.audit") ,("All files", "*.*")))
+
+		if not file:
+			return
+		
 		f = open(file.name, "w")
-		f.write(self.output.get("1.0", END))
+		f.write(self.initialContent)
 		f.close()
 
 	def openProcessAndOutputFile(self):
@@ -31,8 +41,9 @@ class Window(Frame):
 			return
 		
 		f = open(file.name, "r")
+		self.initialContent = f.read()
 
-		structure = compute_audit_structure(f.read())
+		structure = compute_audit_structure(self.initialContent)
 
 		form = '{}'
 

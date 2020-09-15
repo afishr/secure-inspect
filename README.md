@@ -34,5 +34,5 @@ FAF-181
 <a name="video"></a>
 ## Video Demo
 
-[Version 1](https://utm-my.sharepoint.com/personal/mihail_gavrilita_faf_utm_md/_layouts/15/onedrive.aspx?originalPath=aHR0cHM6Ly91dG0tbXkuc2hhcmVwb2ludC5jb20vOmY6L2cvcGVyc29uYWwvbWloYWlsX2dhdnJpbGl0YV9mYWZfdXRtX21kL0VpdDNWS05MX0xCRnNGWnJBTU1tbWhZQlVrMk5fQXN3b05ldmZHUmdvZjUtUkE%5FcnRpbWU9TllFVE5KeFoyRWc&id=%2Fpersonal%2Fmihail%5Fgavrilita%5Ffaf%5Futm%5Fmd%2FDocuments%2FSC%20Screen%20Recordings%2FFAF%2D181%2FLab1%2FTurcanu%5FCalugari%5FLab1%5FScreenRecording%2Emp4&parent=%2Fpersonal%2Fmihail%5Fgavrilita%5Ffaf%5Futm%5Fmd%2FDocuments%2FSC%20Screen%20Recordings%2FFAF%2D181%2FLab1)
-[Version 2]()
+[Version 1](https://utm-my.sharepoint.com/:v:/r/personal/mihail_gavrilita_faf_utm_md/Documents/SC%20Screen%20Recordings/FAF-181/Lab1/Turcanu_Calugari_Lab1_ScreenRecording.mp4?csf=1&web=1&e=q1vJqi)
+[Version 2]( https://utm-my.sharepoint.com/:v:/r/personal/mihail_gavrilita_faf_utm_md/Documents/SC%20Screen%20Recordings/FAF-181/Lab2/Turcanu_Calugari_Lab2_ScreenRecording.mp4?csf=1&web=1&e=TF33rG)

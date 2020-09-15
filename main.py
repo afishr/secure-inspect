@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import filedialog
-from view_audit_structure import compute_audit_structure, output_structure
+from view_audit_structure import compute_audit_structure
+import ast
 
 class Window(Frame):
 
@@ -14,8 +15,14 @@ class Window(Frame):
 		openButton = Button(self, text="Open file", command=self.openProcessAndOutputFile)
 		openButton.pack(fill=BOTH, expand=1)
 
-		saveButton = Button(self, text="Save file", command=self.saveFile)
+		openCustomButton = Button(self, text="Open custom audit", command=self.openCustom)
+		openCustomButton.pack(fill=BOTH, expand=1)
+
+		saveButton = Button(self, text="Save file as", command=self.saveFile)
 		saveButton.pack(fill=BOTH, expand=1)
+
+		saveCustomButton = Button(self, text="Save custom audit", command=self.saveCustom)
+		saveCustomButton.pack(fill=BOTH, expand=1)
 
 		selectAllButton = Button(self, text="Select all", command=self.selectAll)
 		selectAllButton.pack(fill=BOTH, expand=1)
@@ -43,6 +50,21 @@ class Window(Frame):
 			if search.lower() in item.lower():
 				self.output.insert(END, item)
 
+	def saveCustom(self):
+		if not self.initialContent:
+			return
+		
+		file = filedialog.asksaveasfile(mode="w", filetypes = (("Audit files", "*.audit") ,("All files", "*.*")))
+
+		if not file:
+			return
+
+		values = [self.output.get(idx) for idx in self.output.curselection()]
+		
+		f = open(file.name, "w")
+		f.write(str(values))
+		f.close()
+
 	def selectAll(self):
 		self.output.select_set(0, END)
 
@@ -62,6 +84,20 @@ class Window(Frame):
 		f = open(file.name, "w")
 		f.write(self.initialContent)
 		f.close()
+
+	def openCustom(self):
+		file = filedialog.askopenfile(mode="r", filetypes = (("Audit files", "*.audit") ,("All files", "*.*")))
+
+		if not file:
+			return
+		
+		f = open(file.name, "r")
+		self.initialContent = f.read()
+
+		structure = ast.literal_eval(self.initialContent)
+		
+		for element in structure:
+			self.output.insert(END, element)
 
 	def openProcessAndOutputFile(self):
 		file = filedialog.askopenfile(mode="r", filetypes = (("Audit files", "*.audit") ,("All files", "*.*")))

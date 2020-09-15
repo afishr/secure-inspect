@@ -96,6 +96,8 @@ class Window(Frame):
 		for element in structure:
 			self.output.insert(END, element)
 
+		self.initialList = structure
+
 	def openProcessAndOutputFile(self):
 		file = filedialog.askopenfile(mode="r", filetypes = (("Audit files", "*.audit") ,("All files", "*.*")))
 

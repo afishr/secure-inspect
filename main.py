@@ -32,9 +32,6 @@ class Window(Frame):
 		
 		inputBar = Entry(self, textvariable=self.search_var)
 		inputBar.pack(fill=BOTH, expand=1)
-		
-		searchButton = Button(self, text="Search")
-		searchButton.pack(fill=BOTH, expand=1, )
 
 		self.output = Listbox(selectmode='multiple')
 		self.output.pack(fill=BOTH, expand=1)

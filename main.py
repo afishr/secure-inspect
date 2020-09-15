@@ -10,16 +10,30 @@ class Window(Frame):
 		self.pack(fill=BOTH, expand=1)
 
 		openButton = Button(self, text="Open file", command=self.openProcessAndOutputFile)
-		openButton.grid(column=1)
+		openButton.pack(fill=BOTH, expand=1)
 
 		saveButton = Button(self, text="Save file", command=self.saveFile)
-		saveButton.grid(column=1)
+		saveButton.pack(fill=BOTH, expand=1)
 
-		self.output = Text()
+		selectAllButton = Button(self, text="Select all", command=self.selectAll)
+		selectAllButton.pack(fill=BOTH, expand=1)
+
+		deselectAllButton = Button(self, text="Deselect all", command=self.deselectAll)
+		deselectAllButton.pack(fill=BOTH, expand=1)
+
+		self.output = Listbox(selectmode='multiple')
 		self.output.pack(fill=BOTH, expand=1)
 
 		self.initialContent = ''
 
+	def selectAll(self):
+		# values = [self.output.get(idx) for idx in self.output.curselection()]
+		# print (values)
+		self.output.select_set(0, END)
+
+	def deselectAll(self):
+		self.output.selection_clear(0, END)
+		
 	def saveFile(self):
 
 		if not self.initialContent:
@@ -47,7 +61,7 @@ class Window(Frame):
 
 		form = '{}'
 
-		self.output.config(state=NORMAL)
+		# self.output.config(state=NORMAL)
 
 		customItemFlag = False
 		for (_, _, text) in structure:
@@ -57,10 +71,9 @@ class Window(Frame):
 			
 			if (customItemFlag == True):
 				self.output.insert(END, form.format(text))
-				self.output.insert(END, '\n')
 				customItemFlag = False
 
-		self.output.config(state=DISABLED)
+		# self.output.config(state=DISABLED)
 			
 root = Tk()
 app = Window(root)

@@ -92,6 +92,7 @@ class Window(Frame):
 		self.initialContent = f.read()
 
 		structure = ast.literal_eval(self.initialContent)
+		self.output.delete(0, END)
 		
 		for element in structure:
 			self.output.insert(END, element)
@@ -109,6 +110,7 @@ class Window(Frame):
 
 		form = '{}'
 
+		self.output.delete(0, END)
 		customItemFlag = False
 		for (_, _, text) in structure:
 			if (text == "<custom_item>"):

@@ -8,6 +8,8 @@ class Window(Frame):
 		Frame.__init__(self, master)        
 		self.master = master
 		self.pack(fill=BOTH, expand=1)
+		self.search_var = StringVar()
+		self.search_var.trace('w', self.highlight_searched)
 
 		openButton = Button(self, text="Open file", command=self.openProcessAndOutputFile)
 		openButton.pack(fill=BOTH, expand=1)
@@ -20,15 +22,28 @@ class Window(Frame):
 
 		deselectAllButton = Button(self, text="Deselect all", command=self.deselectAll)
 		deselectAllButton.pack(fill=BOTH, expand=1)
+		
+		inputBar = Entry(self, textvariable=self.search_var)
+		inputBar.pack(fill=BOTH, expand=1)
+		
+		searchButton = Button(self, text="Search")
+		searchButton.pack(fill=BOTH, expand=1, )
 
 		self.output = Listbox(selectmode='multiple')
 		self.output.pack(fill=BOTH, expand=1)
 
 		self.initialContent = ''
+		self.initialList = list()
+		self.highlight_searched
+
+	def highlight_searched(self, *args):
+		search = self.search_var.get()
+		self.output.delete(0, END)
+		for item in self.initialList:
+			if search.lower() in item.lower():
+				self.output.insert(END, item)
 
 	def selectAll(self):
-		# values = [self.output.get(idx) for idx in self.output.curselection()]
-		# print (values)
 		self.output.select_set(0, END)
 
 	def deselectAll(self):
@@ -61,8 +76,6 @@ class Window(Frame):
 
 		form = '{}'
 
-		# self.output.config(state=NORMAL)
-
 		customItemFlag = False
 		for (_, _, text) in structure:
 			if (text == "<custom_item>"):
@@ -73,7 +86,7 @@ class Window(Frame):
 				self.output.insert(END, form.format(text))
 				customItemFlag = False
 
-		# self.output.config(state=DISABLED)
+		self.initialList = self.output.get(0, END)
 			
 root = Tk()
 app = Window(root)

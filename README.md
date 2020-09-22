@@ -1,6 +1,6 @@
-# Security-inspector Labority work 1
+# Security-inspector Laboratory Work
 
-##Table of contents
+## Table of contents
 1. [Technologies](#tech)
 2. [Instruction](#intruction)
 3. [Running the code](#code)
